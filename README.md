@@ -3,7 +3,11 @@ Job Specific personalized AI generated cover letter using groq, langchain and st
 1. User to input the URL of a job listing page. 
 2. User to upload the resume in pdf format.
 The tool then extracts job listings from that page and read uploaded resume and write a personlized cover letter based on job description and resume.
- 
+
+## Run App Online
+Link: https://llm-coverletter-generator.streamlit.app/
+
+## Screenshots
 ![img.png](imgs/cover-letter-generator-project1.png)
 ![img.png](imgs/cover-letter-generator-project2.png)
 
