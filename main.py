@@ -1,3 +1,25 @@
+import re
+
+def clean_text(text):
+    # Remove HTML tags
+    text = re.sub(r'<[^>]*?>', ' ', text)
+    # Remove URLs
+    text = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', ' ', text)
+    # Remove special characters
+    # text = re.sub(r'[^a-zA-Z0-9 ]', ' ', text)
+    # Replace multiple spaces with a single space
+    text = re.sub(r'\s{2,}', ' ', text)
+    # Trim leading and trailing whitespace
+    text = text.strip()
+    # Remove extra whitespace
+    text = ' '.join(text.split())
+    return text
+
+def validate_url(url):
+        """Validates a URL using a regular expression."""
+        url_pattern = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+        return re.match(url_pattern, url) is not None
+
 import streamlit as st
 import os
 from langchain_community.document_loaders import WebBaseLoader
@@ -49,5 +71,5 @@ def create_streamlit_app(llm, clean_text):
 
 if __name__ == "__main__":
     chain = Chain()
-    st.set_page_config(layout="wide", page_title="Cold Email Generator", page_icon="📧")
+    st.set_page_config(layout="wide", page_title="AI Cover Letter Generator", page_icon="📧")
     create_streamlit_app(chain, clean_text)
